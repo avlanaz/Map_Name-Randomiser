@@ -24,13 +24,25 @@
     <div id="map"></div>
     <script>
       // initialize Leaflet
-      var map = L.map('map').setView({lon: 0, lat: 0}, 2);
+      var map = L.map('map').setView([51.505, -0.09], 13);
 
       // add the OpenStreetMap tiles
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
       }).addTo(map);
+
+      // add marker
+      var marker = L.marker([51.5, -0.09]).addTo(map);
+      var circle = L.circle([51.508, -0.11], {
+          color: 'red',
+          fillColor: '#f03',
+          fillOpacity: 0.5,
+          radius: 500
+      }).addTo(map);
+
+      // bind popups
+      marker.bindPopup("I am marker");
 
       // show the scale bar on the lower left corner
       L.control.scale({imperial: true, metric: true}).addTo(map);
@@ -47,7 +59,8 @@
 	maxZoom: 19
     });
     <script src="http://unpkg.com/leaflet@latest/dist/leaflet.js"></script>
-    <script src="js/leaflet-providers.js"></script>
+    <script src="leaflet-providers.js"></script>
+    <script src="randomiser.js"></script>
     doc link: https://github.com/leaflet-extras/leaflet-providers
 </html>
 
